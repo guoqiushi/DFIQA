@@ -1,0 +1,151 @@
+{
+  "meta": {
+    "version": "1.0",
+    "note": "CLIP multi-dimension prompts for coarse FIQA in in-cabin scenarios"
+  },
+  "temperature": 0.8,
+  "weights": {
+    "sharpness": 1.2,
+    "exposure": 1.0,
+    "occlusion": 1.2,
+    "pose": 1.0,
+    "framing": 0.9,
+    "artifacts": 0.8,
+    "noise_lowlight": 0.8,
+    "glare_reflection": 1.1,
+    "eyes_visibility": 1.2
+  },
+  "dimensions": {
+    "sharpness": {
+      "pos": [
+        "a sharp, clear photo of a face",
+        "a well-focused face photo with fine details",
+        "a crisp face photo with clear eyes"
+      ],
+      "neg": [
+        "a blurry face photo",
+        "an out-of-focus face photo",
+        "a heavily motion-blurred face image"
+      ]
+    },
+    "exposure": {
+      "pos": [
+        "a well-exposed face photo",
+        "a face photo with balanced lighting",
+        "a properly lit face image with good contrast"
+      ],
+      "neg": [
+        "an overexposed face photo with blown highlights",
+        "an underexposed dark face photo",
+        "a face photo with harsh lighting and strong glare"
+      ]
+    },
+    "occlusion": {
+      "pos": [
+        "a fully visible face with no occlusion",
+        "an unobstructed face photo",
+        "a face photo with clear eyes, nose, and mouth"
+      ],
+      "neg": [
+        "a face photo with heavy occlusion",
+        "a face partially covered by a hand",
+        "a face hidden by hair or an object",
+        "a face wearing large sunglasses blocking the eyes",
+        "a face wearing a mask covering the mouth and nose"
+      ]
+    },
+    "pose": {
+      "pos": [
+        "a frontal face photo looking straight at the camera",
+        "a near-frontal face image with both eyes visible",
+        "a face photo with small head pose variation"
+      ],
+      "neg": [
+        "a face photo with extreme head pose",
+        "a face in strong profile view",
+        "a face photo with large yaw or pitch angle",
+        "a face turned away from the camera"
+      ]
+    },
+    "framing": {
+      "pos": [
+        "a well-centered face photo with the full face inside the frame",
+        "a face photo with a large, clearly visible face",
+        "a properly framed face image"
+      ],
+      "neg": [
+        "a face photo that is tightly cropped and cuts off parts of the face",
+        "a face partially out of frame",
+        "a face photo with a very small face region",
+        "a poorly framed face image"
+      ]
+    },
+    "artifacts": {
+      "pos": [
+        "a high-resolution face photo with clean details",
+        "a face image with minimal compression artifacts",
+        "a clean face photo without pixelation"
+      ],
+      "neg": [
+        "a low-resolution pixelated face photo",
+        "a face image with strong JPEG compression artifacts",
+        "a face photo with blocking artifacts and ringing"
+      ]
+    },
+    "noise_lowlight": {
+      "pos": [
+        "a face photo with low noise and clean texture",
+        "a face image with clear details in low light"
+      ],
+      "neg": [
+        "a noisy face photo with strong sensor noise",
+        "a face image with grainy noise in low light",
+        "a face photo with color noise and speckles"
+      ]
+    },
+    "glare_reflection": {
+      "pos": [
+        "a face photo without glare or reflections",
+        "a face image with clear visibility and no windshield reflections"
+      ],
+      "neg": [
+        "a face photo with strong glare",
+        "a face image with reflections obscuring the face",
+        "a face photo with windshield reflection blocking facial features"
+      ]
+    },
+    "eyes_visibility": {
+      "pos": [
+        "a face photo with clear, visible eyes",
+        "a face image where both eyes are clearly visible and sharp",
+        "a face photo with open eyes and clear eye region"
+      ],
+      "neg": [
+        "a face photo with eyes not visible",
+        "a face image with eyes closed or blurred",
+        "a face photo with eyes covered by sunglasses or shadow"
+      ]
+    }
+  },
+  "rules": {
+    "hard_unusable": [
+      {
+        "all": [
+          { "dim": "eyes_visibility", "op": "<", "value": 0.25 }
+        ],
+        "reason": "eyes not visible"
+      },
+      {
+        "all": [
+          { "dim": "occlusion", "op": "<", "value": 0.25 }
+        ],
+        "reason": "heavy occlusion"
+      }
+    ],
+    "bucket_thresholds": {
+      "good": 0.66,
+      "low": 0.40
+    }
+  }
+}
+

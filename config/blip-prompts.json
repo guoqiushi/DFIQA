@@ -1,0 +1,65 @@
+{
+  "meta": {
+    "version": "1.0",
+    "note": "BLIP2 VQA-style yes/no prompts for face quality factor scoring"
+  },
+  "weights": {
+    "sharpness": 1.1,
+    "exposure": 1.0,
+    "occlusion": 1.2,
+    "pose": 1.0,
+    "framing": 0.9,
+    "artifacts": 0.7,
+    "noise_lowlight": 0.8,
+    "glare_reflection": 1.1,
+    "eyes_visibility": 1.2
+  },
+  "dimensions": {
+    "sharpness": {
+      "question": "Is the face blurry?",
+      "good_answer": "no",
+      "bad_answer": "yes"
+    },
+    "exposure": {
+      "question": "Is the face severely underexposed or overexposed?",
+      "good_answer": "no",
+      "bad_answer": "yes"
+    },
+    "occlusion": {
+      "question": "Is the face heavily occluded by an object, hand, mask, or sunglasses?",
+      "good_answer": "no",
+      "bad_answer": "yes"
+    },
+    "pose": {
+      "question": "Is the head pose extreme (strong profile or large yaw/pitch)?",
+      "good_answer": "no",
+      "bad_answer": "yes"
+    },
+    "framing": {
+      "question": "Is the face poorly framed (cropped out or too small)?",
+      "good_answer": "no",
+      "bad_answer": "yes"
+    },
+    "artifacts": {
+      "question": "Are there strong compression artifacts or pixelation on the face?",
+      "good_answer": "no",
+      "bad_answer": "yes"
+    },
+    "noise_lowlight": {
+      "question": "Is the face image very noisy due to low light?",
+      "good_answer": "no",
+      "bad_answer": "yes"
+    },
+    "glare_reflection": {
+      "question": "Is the face obscured by strong glare or reflections (e.g., windshield reflection)?",
+      "good_answer": "no",
+      "bad_answer": "yes"
+    },
+    "eyes_visibility": {
+      "question": "Are both eyes clearly visible and sharp?",
+      "good_answer": "yes",
+      "bad_answer": "no"
+    }
+  }
+}
+
